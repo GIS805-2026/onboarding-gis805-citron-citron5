@@ -1,6 +1,6 @@
 # Rétroaction automatisée -- S01 (Diagnostic fondamental -- NexaMart kickoff)
 
-_Générée le 2026-05-15T12:38:46+00:00 -- Run `20260515T122624Z-00a5a04f`_
+_Générée le 2026-05-15T12:53:29+00:00 -- Run `20260515T125138Z-ff34aff5`_
 
 Ce document est produit par un pipeline reproductible (vérification SQL déterministe + analyse LLM du brief et de la déclaration IA). Une revue humaine précède toujours sa publication. **À ce stade expérimental, aucune note ni étiquette de niveau n'est diffusée : l'objectif est purement formatif.**
 
@@ -12,44 +12,44 @@ Ce document est produit par un pipeline reproductible (vérification SQL déterm
 
 La requête extraite de votre brief n'a pas pu être validée automatiquement. Quelques pistes constructives ci-dessous pour vous aider à la rendre exécutable et alignee avec la question posée.
 
-_Observation technique : aucun bloc SQL fencé trouvé et extraction LLM échouée_
+_Observation technique : aucune requête SQL détectée dans le brief_
 
 
 **Pistes :**
-> Aucun bloc ```sql ... ``` détecté. Encadrez votre requête finale dans la section « Preuve » pour fiabiliser l'auto-validation.
-> Extracteur LLM : Le brief fourni ne contient aucune requête SQL à extraire.
+> Aucun bloc ```sql ... ``` détecté et l'extracteur LLM n'a trouvé aucune requête. Encadrez votre requête finale dans la section « Preuve » avec un bloc ```sql ... ``` pour fiabiliser l'auto-validation.
+> Extracteur LLM : Le brief fourni ne contient aucune requête SQL dans la section 'Preuve' ou ailleurs ; il est vide de code exploitable.
 
 ## 2. Rétroaction pédagogique sur le brief
 
-> Le brief soumis est incomplet : toutes les sections majeures sont vides, il n’y a ni modèle, ni validation ni recommandation pour le CEO. Remplissez chaque section avec le grain, une requête de vérification et un résumé exécutif actionnable avant la prochaine échéance.
+> Le brief soumis est incomplet : les sections clés (réponse exécutive, modélisation, preuve et validation) sont vides. Remplissez rapidement chaque section avec le grain, la requête de validation et une recommandation décisionnelle pour rendre le livrable actionnable.
 
 ### Observations par dimension
 
 **Model quality**
-- Observation : Sections de modélisation vides — aucune description du grain, des dimensions ou des mesures.
-- Piste d'amélioration : Décrire le grain (ex. : ligne de commande order_id+product_id), lister les dimensions et les mesures attendues, et justifier les choix de patterns (SCD, bridge, etc.).
+- Observation : Sections de modélisation vides : aucune définition de grain, dimensions ou mesures n'est fournie pour répondre à la question CEO.
+- Piste d'amélioration : Définir explicitement le grain et lister les dimensions et mesures clés (ex. grain = ligne de commande, dim_product, dim_date, dim_store) avec une justification business.
 
 **Validation quality**
-- Observation : Aucune requête SQL ou preuve fournie dans la section Preuve/Validation.
-- Piste d'amélioration : Fournir une requête de validation SQL qui agrège le revenu net et ajouter des checks pour NULLs, doublons et cohérence du grain.
+- Observation : Aucune requête SQL ou script de validation fourni dans la section Preuve/Validation.
+- Piste d'amélioration : Fournir la requête de validation principale (SQL) qui produit le résultat attendu et décrire les contrôles pour NULLs et doublons.
 
 **Executive justification**
-- Observation : Réponse exécutive vide — aucun résumé décisionnel ni recommandation pour le CEO.
-- Piste d'amélioration : Rédiger un résumé exécutif (150–300 mots) qui répond à la question du CEO et propose une recommandation claire et actionnable.
+- Observation : La réponse exécutive est vide : aucun résumé décisionnel ni recommandation pour le CEO.
+- Piste d'amélioration : Écrire un bref exécutif (150–300 mots) qui répond à la question CEO et propose une décision claire (ex. valider diagnostic et approuver schéma étoile v1).
 
 **Process trace**
-- Observation : Aucune trace de processus (commits git, note IA ou journal de décision) fournie.
-- Piste d'amélioration : Inclure un bref historique de commits (≥3 messages) et une note IA précisant outils et validation humaine.
+- Observation : Aucune trace de processus : pas de log de commits, pas de note IA ni de decision log mentionnés.
+- Piste d'amélioration : Ajouter l'historique des commits (≥3 messages significatifs) et une note IA précisant outils utilisés et validation humaine.
 
 **Reproducibility**
-- Observation : Aucune instruction de reproduction ou README; sections vides empêchent la reproduction.
-- Piste d'amélioration : Ajouter un README avec instructions Clone → DuckDB → make check et lister les dépendances et chemins relatifs.
+- Observation : Aucune indication de reproductibilité : pas de README, scripts ou instructions pour reproduire les résultats.
+- Piste d'amélioration : Inclure un README avec instructions claires (clone → DuckDB → make check) et éviter les chemins codés en dur.
 
-_Quelques points appellent une attention particulière lors de la prochaine itération : brief_incomplet._
+_Quelques points appellent une attention particulière lors de la prochaine itération : brief_sections_vides._
 
 ## 3. Déclaration d'utilisation de l'IA
 
-> La déclaration contient un exemple utile mais n'a pas été remplie avec vos usages réels. Il manque la précision de la version/modèle pour l'outil et aucune limite ou erreur observée n'est documentée.
+> La déclaration contient un modèle d'entrée et un exemple clair montrant comment documenter l'usage, mais vous n'avez pas fourni vos propres entrées ni précisé des éléments obligatoires. Il manque la mention de la version/modèle précise de l'outil utilisé et l'énoncé des limites ou erreurs observées.
 
 **Sujets bien couverts dans votre déclaration :**
 
@@ -72,11 +72,11 @@ _Quelques points appellent une attention particulière lors de la prochaine ité
 
 ## 5. Traçabilité
 
-- **Run ID :** `20260515T122624Z-00a5a04f`
+- **Run ID :** `20260515T125138Z-ff34aff5`
 - **Devoir :** `S01`
 - **Étudiant·e :** `citron-citron5`
 - **Commit analysé :** `fb0ab79`
-- **Audit (côté instructeur) :** `tools/instructor/feedback_pipeline/audit/20260515T122624Z-00a5a04f/citron-citron5/`
+- **Audit (côté instructeur) :** `tools/instructor/feedback_pipeline/audit/20260515T125138Z-ff34aff5/citron-citron5/`
 - **Prompts (SHA-256) :**
   - `sql_extractor_system` : `90ee9e277de7a27f...`
   - `rubric_grader_system` : `505f32d1d8319d66...`
